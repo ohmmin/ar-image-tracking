@@ -13,7 +13,6 @@
   <style>
     body { margin: 0; overflow: hidden; }
 
-    /* 로딩 중 표시 (옵션이지만 있으면 좋음) */
     .arjs-loader {
       height: 100%;
       width: 100%;
@@ -32,7 +31,7 @@
 </head>
 
 <body>
-  <!-- NFT 디스크립터 로딩될 때까지 표시 -->
+  <!-- NFT 디스크립터 로딩 중 표시 -->
   <div class="arjs-loader">
     <div>이미지 인식 준비 중...</div>
   </div>
@@ -41,10 +40,9 @@
     vr-mode-ui="enabled: false"
     renderer="logarithmicDepthBuffer: true; precision: medium;"
     embedded
-    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
-    >
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-    <!-- NFT 이미지 마커 (album 폴더 안의 album.* 파일들) -->
+    <!-- album NFT 마커 -->
     <a-nft
       type="nft"
       url="album/album"
@@ -53,10 +51,11 @@
       smoothTolerance="0.005"
       smoothThreshold="5">
 
-      <!-- GLB 모델 -->
-      <a-entity 
+      <!-- 앨범 이미지 중심(0,0,0)에 바로 올려놓는 glb 모델 -->
+      <a-entity
         gltf-model="url(./model.glb)"
         position="0 0 0"
+        rotation="0 0 0"
         scale="1 1 1">
       </a-entity>
 
@@ -68,7 +67,7 @@
   </a-scene>
 
   <script>
-    // NFT 디스크립터가 로딩되면 로더 숨기기
+    // 씬이 로드되면 로딩 화면 숨기기
     document.addEventListener("DOMContentLoaded", function () {
       var sceneEl = document.querySelector("a-scene");
       var loader = document.querySelector(".arjs-loader");
@@ -82,4 +81,3 @@
   </script>
 </body>
 </html>
-
